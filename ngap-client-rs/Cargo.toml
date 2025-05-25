@@ -1,0 +1,8 @@
+[package]
+name = "ngap-client-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+libc = "0.2"
+
