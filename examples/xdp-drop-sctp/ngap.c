@@ -22,6 +22,7 @@ unsigned char ngap_payload[] = {
     0x10, 0x08, 0x00, 0x00, 0x02, 0x00, 0x10, 0x00,
     0x15, 0x40, 0x01, 0x20
 };
+
 int ngap_payload_len = sizeof(ngap_payload);
 
 int main(int argc, char *argv[]) {
@@ -61,15 +62,20 @@ int main(int argc, char *argv[]) {
     }
 
     // NGAP 페이로드 전송
-    if (sctp_sendmsg(fd, ngap_payload, ngap_payload_len, NULL, 0, htonl(1234), 0, 0, 0, 0) < 0) {
+    if (sctp_sendmsg(fd, ngap_payload, ngap_payload_len + 1, NULL, 0, htonl(1234), 0, 0, 0, 0) < 0) {
         perror("페이로드 전송 실패");
         close(fd);
         exit(1);
+    }
+    else
+    {
+        printf("payload: %s\n", ngap_payload);
+        printf("페이로드 전송 성공: %d 바이트\n", ngap_payload_len);
     }
 
     // 소켓 닫기
     close(fd);
 
-    printf("NGAP 패킷이 성공적으로 전송되었습니다.\n");
+    // printf("NGAP 패킷이 성공적으로 전송되었습니다.\n");
     return 0;
 }

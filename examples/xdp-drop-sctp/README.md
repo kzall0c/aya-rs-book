@@ -15,6 +15,6 @@ RUST_LOG=info cargo run --config 'target."cfg(all())".runner="sudo -E"'
 ```
 
 ```
-$ gcc -lsctp -g -o ngap ngap.c
-$ gcc -lsctp -g -o ngapd ngapd.c
+$ gcc -g -o ngap ngap.c -lsctp
+$ gcc -g -o ngapd ngapd.c -lsctp
 ```
